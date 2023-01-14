@@ -4,7 +4,8 @@
     {
         static void Main(string[] args)
         {
-            CustomDataSource.CustomDataSourceProgram.Run();
+            //CustomDataSource.CustomDataSourceProgram.RunEnumerable();
+            CustomDataSource.CustomDataSourceProgram.RunQueryable();
         }
     }
 }
