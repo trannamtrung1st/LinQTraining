@@ -64,7 +64,7 @@ namespace LinQTraining.CustomDataSource
 
         public IEnumerator<string> GetEnumerator()
         {
-            var filteredData = MockDataSource.Query(QueryText.ToString());
+            var filteredData = MockDataSource.Query(QueryText);
 
             return new List<string>(filteredData).GetEnumerator();
         }
