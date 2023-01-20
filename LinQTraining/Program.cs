@@ -1,4 +1,6 @@
-﻿namespace LinQTraining
+﻿using LinQTraining.Operators;
+
+namespace LinQTraining
 {
     class Program
     {
@@ -9,6 +11,7 @@
             //CustomDataSource.CustomDataSourceProgram.BasicOperations();
             //CustomDataSource.CustomDataSourceProgram.RunQueryableConvertedToEnumerable();
             //GettingStarted.GettingStartedProgram.Run();
+            MannerOfExecution.Run();
         }
     }
 }
