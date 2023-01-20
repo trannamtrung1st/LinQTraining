@@ -140,5 +140,31 @@
             IEnumerable<IGrouping<char, string>> groupedByFirstLetter =
                 containsAOrderByLengthAsc.GroupBy(n => n[0]);
         }
+
+        public static void RunQueryableConvertedToEnumerable()
+        {
+            IQueryable<string> query = new MyQueryable();
+
+            // Query processing is handled by IQueryable object (provided by specific LinQ providers)
+            query = query.Where(s => s.Contains("A"));
+            query = query.Where(s => s != "ABC");
+
+            IEnumerable<string> inMemoryQuery1 = query;
+            IEnumerable<string> inMemoryQuery2 = query.AsEnumerable();
+
+            // From this point, query logic is handled by LinQ in-memory operators
+            inMemoryQuery1 = inMemoryQuery1.Skip(2).Take(100);
+            inMemoryQuery2 = inMemoryQuery2.Skip(2).Take(100);
+
+            /**
+             * When inMemoryQuery1/inMemoryQuery2 object is enumerated:
+             * 1. Handled by IQueryable: fetch from data source, .Where(...)
+             * 2. Converted to enumerable object
+             * 3. Handled by LinQ in-memory: .Skip(), .Take() 
+             */
+            string[] result = inMemoryQuery1.ToArray();
+            result = inMemoryQuery2.ToArray();
+            Console.WriteLine(string.Join(',', result));
+        }
     }
 }

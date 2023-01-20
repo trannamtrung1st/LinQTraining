@@ -7,7 +7,8 @@
             //CustomDataSource.CustomDataSourceProgram.RunEnumerable();
             //CustomDataSource.CustomDataSourceProgram.RunQueryable();
             //CustomDataSource.CustomDataSourceProgram.BasicOperations();
-            GettingStarted.GettingStartedProgram.Run();
+            //CustomDataSource.CustomDataSourceProgram.RunQueryableConvertedToEnumerable();
+            //GettingStarted.GettingStartedProgram.Run();
         }
     }
 }
