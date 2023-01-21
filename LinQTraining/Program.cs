@@ -11,7 +11,8 @@ namespace LinQTraining
             //CustomDataSource.CustomDataSourceProgram.BasicOperations();
             //CustomDataSource.CustomDataSourceProgram.RunQueryableConvertedToEnumerable();
             //GettingStarted.GettingStartedProgram.Run();
-            MannerOfExecution.Run();
+            //MannerOfExecution.Run();
+            MoreOperators.Run();
         }
     }
 }

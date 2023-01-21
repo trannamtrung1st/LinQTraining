@@ -2,41 +2,6 @@
 {
     public static class GettingStartedProgram
     {
-        private static IEnumerable<Product> Products;
-        private static IEnumerable<ProductCategory> Categories;
-
-        private static void Init()
-        {
-            var productList = new List<Product>();
-            var categoryList = new List<ProductCategory>();
-            Products = productList;
-            Categories = categoryList;
-
-            productList.AddRange(new[]
-            {
-                new Product { Id = "apple", Name = "apple", CategoryId = "fruit" },
-                new Product { Id = "banana", Name = "banana", CategoryId = "fruit" },
-                new Product { Id = "orange", Name = "orange", CategoryId = "fruit" },
-                new Product { Id = "grape", Name = "grape", CategoryId = "fruit" },
-                new Product { Id = "mango", Name = "mango", CategoryId = "fruit" },
-                new Product { Id = "television", Name = "television", CategoryId = "electronic" },
-                new Product { Id = "laptop", Name = "laptop", CategoryId = "electronic" },
-                new Product { Id = "keyboard", Name = "keyboard", CategoryId = "electronic" },
-                new Product { Id = "monitor", Name = "monitor", CategoryId = "electronic" },
-                new Product { Id = "knife", Name = "knife", CategoryId = "household" },
-                new Product { Id = "spoon", Name = "spoon", CategoryId = "household" },
-                new Product { Id = "bowl", Name = "bowl", CategoryId = "household" },
-                new Product { Id = "chopsticks", Name = "chopsticks", CategoryId = "household" },
-            });
-
-            categoryList.AddRange(new[]
-            {
-                new ProductCategory { Id = "fruit", Name = "fruit" },
-                new ProductCategory { Id = "electronic", Name = "electronic" },
-                new ProductCategory { Id = "household", Name = "household" }
-            });
-        }
-
         private static void PrintList<T>(IEnumerable<T> list,
             Func<T, string> toString)
         {
@@ -47,8 +12,6 @@
 
         public static void Run()
         {
-            Init();
-
             GetAllProductsAndCategories();
 
             GetAllProductsWithCategory();
@@ -70,8 +33,8 @@
         {
             Console.WriteLine("\n=== GetAllProductsAndCategories ===");
 
-            var products = Products.ToList();
-            var categories = Categories.ToList();
+            var products = Data.Products.ToList();
+            var categories = Data.Categories.ToList();
             PrintList(products, i => i.ToString()); PrintList(categories, i => i.ToString());
 
             Console.WriteLine("=== GetAllProductsAndCategories ===\n");
@@ -81,8 +44,8 @@
         {
             Console.WriteLine("\n=== GetAllProductsWithCategory ===");
 
-            var productsWithCategory = from product in Products
-                                       join category in Categories on product.CategoryId equals category.Id
+            var productsWithCategory = from product in Data.Products
+                                       join category in Data.Categories on product.CategoryId equals category.Id
                                        select new Product
                                        {
                                            Id = product.Id,
@@ -100,7 +63,7 @@
         {
             Console.WriteLine("\n=== GetProductById ===");
 
-            var productById = (from product in Products
+            var productById = (from product in Data.Products
                                where product.Id == "banana"
                                select product).FirstOrDefault();
 
@@ -113,7 +76,7 @@
         {
             Console.WriteLine("\n=== GetAllProductsHavingNameStartWithA ===");
 
-            var products = from product in Products
+            var products = from product in Data.Products
                            where product.Name.StartsWith("A", StringComparison.OrdinalIgnoreCase)
                            select product;
 
@@ -126,8 +89,8 @@
         {
             Console.WriteLine("\n=== GetAllProductsHavingCategoryNameContainsE ===");
 
-            var products = from product in Products
-                           join category in Categories on product.CategoryId equals category.Id
+            var products = from product in Data.Products
+                           join category in Data.Categories on product.CategoryId equals category.Id
                            where category.Name.Contains("E", StringComparison.OrdinalIgnoreCase)
                            select new
                            {
@@ -144,7 +107,7 @@
         {
             Console.WriteLine("\n=== GetAllProductsGroupedByCategory ===");
 
-            var groups = from product in Products
+            var groups = from product in Data.Products
                          group product by product.CategoryId;
 
             foreach (var group in groups)
@@ -161,8 +124,8 @@
         {
             Console.WriteLine("\n=== GetProductOrderByCategoryNameDescAndProductNameAsc ===");
 
-            var products = from product in Products
-                           join category in Categories on product.CategoryId equals category.Id
+            var products = from product in Data.Products
+                           join category in Data.Categories on product.CategoryId equals category.Id
                            orderby category.Name descending, product.Name ascending
                            select new
                            {
@@ -179,9 +142,9 @@
         {
             Console.WriteLine("\n=== GetCountOfProductsGroupedByCategoryAndTheCategoryName ===");
 
-            var products = from product in Products
+            var products = from product in Data.Products
                            group product by product.CategoryId into groups
-                           join category in Categories on groups.Key equals category.Id
+                           join category in Data.Categories on groups.Key equals category.Id
                            select new
                            {
                                Category = category,
@@ -192,24 +155,5 @@
 
             Console.WriteLine("=== GetCountOfProductsGroupedByCategoryAndTheCategoryName ===\n");
         }
-    }
-
-    public class ProductCategory
-    {
-        public string Id { get; set; }
-        public string Name { get; set; }
-
-        public override string ToString() => $"Category: {Name}";
-    }
-
-    public class Product
-    {
-        public string Id { get; set; }
-        public string Name { get; set; }
-        public string CategoryId { get; set; }
-
-        public ProductCategory Category { get; set; }
-
-        public override string ToString() => $"Product: {Name}";
     }
 }
