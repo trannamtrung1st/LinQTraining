@@ -21,6 +21,10 @@
             GroupingData.Run();
 
             GenerationOperations.Run();
+
+            EqualityOperations.Run();
+
+            ElementOperations.Run();
         }
     }
 }
