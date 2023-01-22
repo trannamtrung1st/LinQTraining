@@ -33,7 +33,8 @@
             {
                 new ProductCategory { Id = "fruit", Name = "fruit" },
                 new ProductCategory { Id = "electronic", Name = "electronic" },
-                new ProductCategory { Id = "household", Name = "household" }
+                new ProductCategory { Id = "household", Name = "household" },
+                new ProductCategory { Id = "misc", Name = "misc" },
             });
         }
     }

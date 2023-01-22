@@ -15,6 +15,8 @@
             ProjectionOperations.Run();
 
             PartitioningData.Run();
+
+            JoinOperations.Run();
         }
     }
 }
