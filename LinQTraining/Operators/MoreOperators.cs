@@ -17,6 +17,8 @@
             PartitioningData.Run();
 
             JoinOperations.Run();
+
+            GroupingData.Run();
         }
     }
 }
