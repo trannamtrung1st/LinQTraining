@@ -19,6 +19,8 @@
             JoinOperations.Run();
 
             GroupingData.Run();
+
+            GenerationOperations.Run();
         }
     }
 }
