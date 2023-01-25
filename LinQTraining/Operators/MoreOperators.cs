@@ -27,6 +27,8 @@
             ElementOperations.Run();
 
             ConvertingDataTypes.Run();
+
+            ConcatenationOperations.Run();
         }
     }
 }
