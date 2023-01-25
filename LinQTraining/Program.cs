@@ -1,4 +1,4 @@
-﻿using LinQTraining.Operators;
+﻿using LinQTraining.LinqToObjects;
 
 namespace LinQTraining
 {
@@ -12,7 +12,8 @@ namespace LinQTraining
             //CustomDataSource.CustomDataSourceProgram.RunQueryableConvertedToEnumerable();
             //GettingStarted.GettingStartedProgram.Run();
             //MannerOfExecution.Run();
-            MoreOperators.Run();
+            //MoreOperators.Run();
+            LinQExtensions.Run();
         }
     }
 }
