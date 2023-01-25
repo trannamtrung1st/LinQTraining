@@ -1,57 +1,27 @@
 ﻿namespace LinQTraining.Operators
 {
-    public static class ElementOperations
+    public static class ConvertingDataTypes
     {
         public static void Run()
         {
-            List<int> numbers = new List<int>() { 35, 44, 200, 84, 3987, 4, 199, 329, 446, 208 };
-            IEnumerable<int> empty = Enumerable.Empty<int>();
-            IEnumerable<int> singleList = new[] { 1 };
+            IEnumerable<object> objects = new object[] { 1, 2, "Hello", new object() };
 
-            try
-            {
-                var elementAt = numbers.ElementAtOrDefault(0);
-                elementAt = numbers.ElementAt(0);
-                elementAt = empty.ElementAtOrDefault(10);
-                elementAt = empty.ElementAt(10);
-            }
-            catch { Console.WriteLine("Element at error"); }
+            IQueryable<object> iqueryable = objects.AsQueryable();
 
-            try
-            {
-                var first = numbers.FirstOrDefault();
-                first = numbers.First();
-                first = empty.FirstOrDefault();
-                first = empty.First();
-            }
-            catch { Console.WriteLine("First error"); }
+            IEnumerable<object> enumerable = iqueryable.AsEnumerable();
 
-            try
-            {
-                var last = numbers.LastOrDefault();
-                last = numbers.Last();
-                last = empty.LastOrDefault();
-                last = empty.Last();
-            }
-            catch { Console.WriteLine("Last error"); }
+            IEnumerable<string> cast = from string s in objects
+                                       select s;
 
-            var single = singleList.SingleOrDefault();
-            single = singleList.Single();
+            cast = objects.Cast<string>();
 
-            try
-            {
-                single = empty.SingleOrDefault();
-                single = empty.Single();
-            }
-            catch { Console.WriteLine("Single error"); }
+            IEnumerable<string> ofType = from s in objects.OfType<string>()
+                                         select s;
 
-            try
-            {
-                single = numbers.SingleOrDefault();
-                single = numbers.Single();
-            }
-            catch { Console.WriteLine("Single error"); }
+            object[] array = objects.ToArray();
+            List<object> list = objects.ToList();
+            Dictionary<Type, object> dictionary = objects.ToDictionary(e => e.GetType());
+            ILookup<Type, object> lookup = objects.ToLookup(e => e.GetType());
         }
-
     }
 }

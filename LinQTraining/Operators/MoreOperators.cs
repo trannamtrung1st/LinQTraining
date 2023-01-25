@@ -25,6 +25,8 @@
             EqualityOperations.Run();
 
             ElementOperations.Run();
+
+            ConvertingDataTypes.Run();
         }
     }
 }
