@@ -1,6 +1,6 @@
-﻿namespace LinQTraining.LinqToObjects
+﻿namespace LinQTraining.LinqExtensions
 {
-    public static class LinQExtensions
+    public static class LinQToObjectsExtensions
     {
         public static IEnumerable<T> NotDefault<T>(this IEnumerable<T> source)
             => source.Where(x => x != null && !x.Equals(default(T)));

@@ -1,4 +1,4 @@
-﻿using LinQTraining.LinqToObjects;
+﻿using LinQTraining.LinqExtensions;
 
 namespace LinQTraining
 {
@@ -13,7 +13,8 @@ namespace LinQTraining
             //GettingStarted.GettingStartedProgram.Run();
             //MannerOfExecution.Run();
             //MoreOperators.Run();
-            LinQExtensions.Run();
+            //LinQToObjectsExtensions.Run();
+            LinQToXML.Run();
         }
     }
 }
