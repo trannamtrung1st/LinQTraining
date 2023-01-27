@@ -1,4 +1,4 @@
-﻿using LinQTraining.LinqExtensions;
+﻿using LinQTraining.SameQueryForMultiProviders;
 
 namespace LinQTraining
 {
@@ -15,7 +15,8 @@ namespace LinQTraining
             //MoreOperators.Run();
             //LinQToObjectsExtensions.Run();
             //LinQToXML.Run();
-            LinQInEFCore.Run().Wait();
+            //LinQInEFCore.Run().Wait();
+            SameQueryForMultiProvidersProgram.Run();
         }
     }
 }

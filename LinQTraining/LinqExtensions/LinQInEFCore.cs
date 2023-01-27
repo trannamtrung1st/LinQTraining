@@ -11,18 +11,12 @@ namespace LinQTraining.LinqExtensions
 
             using var context = new LinQContext();
 
-            IQueryable<Data> query = from data in context.Data
-                                     select data;
+            IQueryable<Product> query = from product in context.Product
+                                        where product.Category.Name == "fruit"
+                                        select product;
             Console.WriteLine(query.ToQueryString());
-            Data[] allData = query.ToArray();
-            Console.WriteLine(allData.Length);
-
-            query = from data in context.Data
-                    where data.Id > 50
-                    select data;
-            Console.WriteLine(query.ToQueryString());
-            Data[] filtered = query.ToArray();
-            Console.WriteLine(filtered.Length);
+            Product[] products = query.ToArray();
+            Console.WriteLine(products.Length);
         }
 
         public static async Task Init()
@@ -32,13 +26,7 @@ namespace LinQTraining.LinqExtensions
         }
     }
 
-    class Data
-    {
-        public int Id { get; set; }
-        public string Value { get; set; }
-    }
-
-    class LinQContext : DbContext
+    public class LinQContext : DbContext
     {
         public LinQContext(DbContextOptions options) : base(options)
         {
@@ -48,7 +36,8 @@ namespace LinQTraining.LinqExtensions
         {
         }
 
-        public virtual DbSet<Data> Data { get; set; }
+        public virtual DbSet<Product> Product { get; set; }
+        public virtual DbSet<ProductCategory> Category { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -62,9 +51,19 @@ namespace LinQTraining.LinqExtensions
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<Data>(builder =>
+            modelBuilder.Entity<Product>(builder =>
             {
-                builder.HasData(Enumerable.Range(1, 100).Select(i => new Data { Id = i, Value = $"Data {i}" }));
+                builder.HasOne(e => e.Category)
+                    .WithMany(e => e.Products)
+                    .HasForeignKey(e => e.CategoryId)
+                    .IsRequired(false);
+
+                builder.HasData(Data.Products);
+            });
+
+            modelBuilder.Entity<ProductCategory>(builder =>
+            {
+                builder.HasData(Data.Categories);
             });
         }
     }
