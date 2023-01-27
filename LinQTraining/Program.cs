@@ -14,7 +14,8 @@ namespace LinQTraining
             //MannerOfExecution.Run();
             //MoreOperators.Run();
             //LinQToObjectsExtensions.Run();
-            LinQToXML.Run();
+            //LinQToXML.Run();
+            LinQInEFCore.Run().Wait();
         }
     }
 }
