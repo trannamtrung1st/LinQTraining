@@ -1,4 +1,4 @@
-﻿using LinQTraining.SameQueryForMultiProviders;
+﻿using LinQTraining.EFCoreAdvanced;
 
 namespace LinQTraining
 {
@@ -16,7 +16,8 @@ namespace LinQTraining
             //LinQToObjectsExtensions.Run();
             //LinQToXML.Run();
             //LinQInEFCore.Run().Wait();
-            SameQueryForMultiProvidersProgram.Run();
+            //SameQueryForMultiProvidersProgram.Run();
+            EFCoreAdvancedProgram.Run();
         }
     }
 }

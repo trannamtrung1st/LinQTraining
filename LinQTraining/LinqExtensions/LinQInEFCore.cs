@@ -28,7 +28,9 @@ namespace LinQTraining.LinqExtensions
 
     public class LinQContext : DbContext
     {
-        public LinQContext(DbContextOptions options) : base(options)
+        private bool _disposed;
+
+        public LinQContext(DbContextOptions<LinQContext> options) : base(options)
         {
         }
 
@@ -43,7 +45,9 @@ namespace LinQTraining.LinqExtensions
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Server=.;Database=LinQTraining;Trusted_Connection=False;User Id=sa;Password=zaQ@123456!;MultipleActiveResultSets=true");
+                optionsBuilder.UseSqlServer("Server=.;Database=LinQTraining;Trusted_Connection=False;User Id=sa;Password=zaQ@123456!;MultipleActiveResultSets=true")
+                    //.LogTo(Console.WriteLine);
+                    .LogTo(Console.WriteLine, minimumLevel: Microsoft.Extensions.Logging.LogLevel.Information);
             }
         }
 
