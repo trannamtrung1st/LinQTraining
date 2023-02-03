@@ -1,6 +1,4 @@
-﻿using LinQTraining.LinqExtensions;
-
-namespace LinQTraining.SameQueryForMultiProviders.DataSources
+﻿namespace LinQTraining.SameQueryForMultiProviders.DataSources
 {
     public static class EFCoreDataSource
     {

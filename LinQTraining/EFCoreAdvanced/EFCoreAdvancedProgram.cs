@@ -5,6 +5,8 @@
         public static void Run()
         {
             ClientServerEvaluation.Run();
+
+            SplitQueries.Run();
         }
     }
 }

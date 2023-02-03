@@ -8,7 +8,7 @@ namespace LinQTraining.SameQueryForMultiProviders
         {
             Query(ObjectsDataSource.Products.AsQueryable(), "Objects");
 
-            using LinqExtensions.LinQContext context = EFCoreDataSource.Context;
+            using LinQContext context = EFCoreDataSource.Context;
             Query(context.Product, "EFCore");
         }
 

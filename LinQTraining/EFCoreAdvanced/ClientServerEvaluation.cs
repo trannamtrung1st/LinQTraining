@@ -1,5 +1,4 @@
-﻿using LinQTraining.LinqExtensions;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace LinQTraining.EFCoreAdvanced
 {
@@ -13,11 +12,10 @@ namespace LinQTraining.EFCoreAdvanced
 
             ExplicitClientEval();
 
+            ParameterVsConstant("a");
+            ParameterVsConstant("b");
+
             PotentialMemoryLeak();
-
-            GC.Collect();
-
-            Thread.Sleep(10000);
         }
 
         public static void ClientEvalTopLevelProjection()
@@ -90,6 +88,27 @@ namespace LinQTraining.EFCoreAdvanced
             {
                 Console.Error.WriteLine(ex);
             }
+        }
+
+        public static void ParameterVsConstant(string containsValue)
+        {
+            using LinQContext context = new LinQContext();
+
+            var query = context.Product
+                .Where(product => product.Name.Contains("a"))
+                .Where(product => product.Name.Contains(containsValue))
+                .Select(product => new
+                {
+                    ProductName = product.Name,
+                    ProductId = product.Id,
+                    FirstChar = product.Name[0]
+                });
+
+            Console.WriteLine(query.ToQueryString());
+
+            var result = query.ToList();
+
+            foreach (var product in result) Console.WriteLine(product);
         }
 
         public static void PotentialMemoryLeak()
