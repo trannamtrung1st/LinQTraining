@@ -5,6 +5,8 @@ namespace LinQTraining
 {
     public class LinQContext : DbContext
     {
+        public const string DefaultConnectionString = "Server=.;Database=LinQTraining;Trusted_Connection=False;User Id=sa;Password=zaQ@123456!;MultipleActiveResultSets=true";
+
         public LinQContext(DbContextOptions<LinQContext> options) : base(options)
         {
         }
@@ -21,7 +23,7 @@ namespace LinQTraining
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Server=.;Database=LinQTraining;Trusted_Connection=False;User Id=sa;Password=zaQ@123456!;MultipleActiveResultSets=true")
+                optionsBuilder.UseSqlServer(DefaultConnectionString)
                     //.LogTo(Console.WriteLine);
                     .LogTo(Console.WriteLine, minimumLevel: Microsoft.Extensions.Logging.LogLevel.Information);
             }

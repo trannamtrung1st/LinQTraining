@@ -7,6 +7,8 @@
             ClientServerEvaluation.Run();
 
             SplitQueries.Run();
+
+            N1Queries.Run();
         }
     }
 }

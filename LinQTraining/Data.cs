@@ -37,8 +37,8 @@
         public string Name { get; set; }
         public string CompanyId { get; set; }
 
-        public Company Company { get; set; }
-        public IEnumerable<Product> Products { get; set; }
+        public virtual Company Company { get; set; }
+        public virtual IEnumerable<Product> Products { get; set; }
 
         public override string ToString() => $"Category: {Name}";
     }
@@ -47,8 +47,8 @@
     {
         public string Id { get; set; }
         public string Name { get; set; }
-        public IEnumerable<Product> Products { get; set; }
-        public IEnumerable<ProductCategory> ProductCategories { get; set; }
+        public virtual IEnumerable<Product> Products { get; set; }
+        public virtual IEnumerable<ProductCategory> ProductCategories { get; set; }
     }
 
     public class Product
@@ -58,8 +58,8 @@
         public string CategoryId { get; set; }
         public string CompanyId { get; set; }
 
-        public Company Company { get; set; }
-        public ProductCategory Category { get; set; }
+        public virtual Company Company { get; set; }
+        public virtual ProductCategory Category { get; set; }
 
         public override string ToString() => $"Product: {Name}";
     }
