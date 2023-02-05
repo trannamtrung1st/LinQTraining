@@ -64,7 +64,7 @@
             Console.WriteLine("\n=== GetProductById ===");
 
             var productById = (from product in Data.Products
-                               where product.Id == "banana"
+                               where product.Id == 1
                                select product).FirstOrDefault();
 
             Console.WriteLine(productById);

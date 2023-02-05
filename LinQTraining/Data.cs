@@ -7,19 +7,19 @@
 
         public static IEnumerable<Product> Products => new[]
         {
-            new Product { Id = "apple", Name = "apple", CategoryId = "fruit", CompanyId = "company1" },
-            new Product { Id = "banana", Name = "banana", CategoryId = "fruit", CompanyId = "company1" },
-            new Product { Id = "orange", Name = "orange", CategoryId = "fruit", CompanyId = "company1" },
-            new Product { Id = "grape", Name = "grape", CategoryId = "fruit", CompanyId = "company1" },
-            new Product { Id = "mango", Name = "mango", CategoryId = "fruit", CompanyId = "company2" },
-            new Product { Id = "television", Name = "television", CategoryId = "electronic", CompanyId = "company2" },
-            new Product { Id = "laptop", Name = "laptop", CategoryId = "electronic", CompanyId = "company2" },
-            new Product { Id = "keyboard", Name = "keyboard", CategoryId = "electronic", CompanyId = "company2" },
-            new Product { Id = "monitor", Name = "monitor", CategoryId = "electronic", CompanyId = "company2" },
-            new Product { Id = "knife", Name = "knife", CategoryId = "household", CompanyId = "company3" },
-            new Product { Id = "spoon", Name = "spoon", CategoryId = "household", CompanyId = "company3" },
-            new Product { Id = "bowl", Name = "bowl", CategoryId = "household", CompanyId = "company3" },
-            new Product { Id = "chopsticks", Name = "chopsticks", CategoryId = "household", CompanyId = "company3" },
+            new Product { Id = 1, Name = "apple", CategoryId = "fruit", CompanyId = "company1" },
+            new Product { Id = 2, Name = "banana", CategoryId = "fruit", CompanyId = "company1" },
+            new Product { Id = 3, Name = "orange", CategoryId = "fruit", CompanyId = "company1" },
+            new Product { Id = 4, Name = "grape", CategoryId = "fruit", CompanyId = "company1" },
+            new Product { Id = 5, Name = "mango", CategoryId = "fruit", CompanyId = "company2" },
+            new Product { Id = 6, Name = "television", CategoryId = "electronic", CompanyId = "company2" },
+            new Product { Id = 7, Name = "laptop", CategoryId = "electronic", CompanyId = "company2" },
+            new Product { Id = 8, Name = "keyboard", CategoryId = "electronic", CompanyId = "company2" },
+            new Product { Id = 9, Name = "monitor", CategoryId = "electronic", CompanyId = "company2" },
+            new Product { Id = 10, Name = "knife", CategoryId = "household", CompanyId = "company3" },
+            new Product { Id = 11, Name = "spoon", CategoryId = "household", CompanyId = "company3" },
+            new Product { Id = 12, Name = "bowl", CategoryId = "household", CompanyId = "company3" },
+            new Product { Id = 13, Name = "chopsticks", CategoryId = "household", CompanyId = "company3" },
         };
 
         public static IEnumerable<ProductCategory> Categories => new[]
@@ -55,7 +55,7 @@
 
     public class Product
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
         public string CategoryId { get; set; }
         public string CompanyId { get; set; }

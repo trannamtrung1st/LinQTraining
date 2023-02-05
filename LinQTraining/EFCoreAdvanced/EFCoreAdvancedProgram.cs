@@ -11,6 +11,8 @@
             N1Queries.Run();
 
             ComplexQueryOperators.Run();
+
+            Pagination.Run();
         }
     }
 }
