@@ -9,6 +9,8 @@
             SplitQueries.Run();
 
             N1Queries.Run();
+
+            ComplexQueryOperators.Run();
         }
     }
 }
