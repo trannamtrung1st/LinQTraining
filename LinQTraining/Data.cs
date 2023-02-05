@@ -49,6 +49,8 @@
         public string Name { get; set; }
         public virtual IEnumerable<Product> Products { get; set; }
         public virtual IEnumerable<ProductCategory> ProductCategories { get; set; }
+
+        public override string ToString() => $"Company: {Name}";
     }
 
     public class Product

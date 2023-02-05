@@ -10,11 +10,83 @@ namespace LinQTraining.EFCoreAdvanced
 
             SubQueries();
 
+            CrossApplyAndOuterApply();
+
+            SelectMany();
+
+            GroupByHaving();
+
             SelectLatestItemsGroupedByParent();
 
             SelectWithRowNumbers();
 
             SplitQueriesAndInMemoryProcessing();
+        }
+
+        public static void GroupByHaving()
+        {
+            using LinQContext context = new LinQContext();
+
+            var productsCountQuery = from product in context.Product
+                                     group product by product.CategoryId into grouping
+                                     select new
+                                     {
+                                         CategoryId = grouping.Key,
+                                         ProductCount = grouping.Count()
+                                     };
+            string queryText = productsCountQuery.ToQueryString();
+            Console.WriteLine(queryText);
+            var data = productsCountQuery.ToList();
+
+            var productsCountHavingQuery = from product in context.Product
+                                           group product by product.CategoryId into grouping
+                                           where grouping.Count() > 4
+                                           select new
+                                           {
+                                               CategoryId = grouping.Key,
+                                               ProductCount = grouping.Count()
+                                           };
+            queryText = productsCountHavingQuery.ToQueryString();
+            Console.WriteLine(queryText);
+            data = productsCountHavingQuery.ToList();
+        }
+
+        public static void SelectMany()
+        {
+            using LinQContext context = new LinQContext();
+
+            IQueryable<Product> productsOfCategories = (from category in context.Category
+                                                        where category.Products.Count() < 5
+                                                        select category)
+                                       .SelectMany(category => category.Products);
+            string queryText = productsOfCategories.ToQueryString();
+            Console.WriteLine(queryText);
+            List<Product> data = productsOfCategories.ToList();
+        }
+
+        public static void CrossApplyAndOuterApply()
+        {
+            using LinQContext context = new LinQContext();
+
+            // Demo using SQL Server, APPLY can use value from left table's columns in right table
+            var query = from company in context.Company
+                        from product in context.Product
+                            .Where(p => p.Category.Name.Contains("elec"))
+                            .Where(p => company.ProductCategories.Any(c => c.Id == p.CategoryId))
+                        select new { company, product };
+            string queryText = query.ToQueryString();
+            Console.WriteLine(queryText);
+            var data = query.ToList();
+
+            query = from company in context.Company
+                    from product in context.Product
+                        .Where(p => p.Category.Name.Contains("elec"))
+                        .Where(p => company.ProductCategories.Any(c => c.Id == p.CategoryId))
+                        .DefaultIfEmpty()
+                    select new { company, product };
+            queryText = query.ToQueryString();
+            Console.WriteLine(queryText);
+            data = query.ToList();
         }
 
         public static void Joins()
