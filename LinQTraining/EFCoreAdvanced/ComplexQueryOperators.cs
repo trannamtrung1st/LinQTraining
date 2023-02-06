@@ -14,6 +14,8 @@ namespace LinQTraining.EFCoreAdvanced
 
             SelectMany();
 
+            Unions();
+
             GroupByHaving();
 
             SelectLatestItemsGroupedByParent();
@@ -49,6 +51,34 @@ namespace LinQTraining.EFCoreAdvanced
             queryText = productsCountHavingQuery.ToQueryString();
             Console.WriteLine(queryText);
             data = productsCountHavingQuery.ToList();
+        }
+
+        public static void Unions()
+        {
+            using LinQContext context = new LinQContext();
+
+            var query1 = from product in context.Product
+                         where product.Name.Contains("a")
+                         select new
+                         {
+                             product.Name
+                         };
+            var query2 = from product in context.Product
+                         where product.Name.Contains("b")
+                         select new
+                         {
+                             product.Name
+                         };
+
+            var union = query1.Union(query2);
+            string queryText = union.ToQueryString();
+            Console.WriteLine(queryText);
+            var data = union.ToList();
+
+            var unionAll = query1.Concat(query2);
+            queryText = unionAll.ToQueryString();
+            Console.WriteLine(queryText);
+            data = unionAll.ToList();
         }
 
         public static void SelectMany()
