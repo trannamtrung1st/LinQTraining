@@ -65,4 +65,10 @@
 
         public override string ToString() => $"Product: {Name}";
     }
+
+    public class GetProductCountByCategoryView
+    {
+        public string CategoryId { get; set; }
+        public int ProductCount { get; set; }
+    }
 }

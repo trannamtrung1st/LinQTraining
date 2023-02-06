@@ -19,6 +19,10 @@ namespace LinQTraining
         public virtual DbSet<ProductCategory> Category { get; set; }
         public virtual DbSet<Company> Company { get; set; }
 
+        #region Views
+        public virtual DbSet<GetProductCountByCategoryView> GetProductCountByCategoryView { get; set; }
+        #endregion
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
@@ -32,6 +36,8 @@ namespace LinQTraining
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<GetProductCountByCategoryView>().HasNoKey().ToView(null);
 
             modelBuilder.Entity<Product>(builder =>
             {

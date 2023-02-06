@@ -13,6 +13,8 @@
             ComplexQueryOperators.Run();
 
             Pagination.Run();
+
+            RawQueries.Run();
         }
     }
 }
